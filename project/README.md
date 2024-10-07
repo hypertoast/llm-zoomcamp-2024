@@ -61,7 +61,7 @@ The project is divided into two main parts:
 - [Clone Repo](https://github.com/hypertoast/llm-zoomcamp-2024/)
 ```bash
 git clone https://github.com/hypertoast/llm-zoomcamp-2024/
-cd llm-zoomcamp-2024
+cd llm-zoomcamp-2024/project
 ```
 
 ### Step 2 - Set up Python environment
