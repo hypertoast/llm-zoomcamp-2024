@@ -24,7 +24,7 @@ The goal of the project is to demonstrate the application of LLMs and retrieval-
 
 ## Technologies, tools and data sources used
 
-- Kaggle Dataset: Mental Health Conversational Data for knowledge base creation.
+- Kaggle Dataset: [Mental Health Conversational Data](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/) for knowledge base creation.
 - Python: Used for building the application pipeline.
 - Streamlit: For creating the UI to interact with the system.
 - Hugging Face Transformers: For creating vector embeddings using the sentence-transformers/all-MiniLM-L6-v2 model.
@@ -101,6 +101,7 @@ docker run -it -p 8501:8501 mental-health-rag-app
 - Data Persistence: Switch feedback logging from CSV to a database like SQLite or PostgreSQL.
 - Cloud Deployment: Deploy the app to cloud platforms such as Heroku or AWS for broader accessibility.
 - Enhanced Monitoring: Implement a more robust feedback monitoring dashboard using tools like Grafana.
+- Integrating Kaggle API to download the data-set. Currently, the raw source is embedded within this project (intents.json)
 
 ## Reviewing criteria
 
