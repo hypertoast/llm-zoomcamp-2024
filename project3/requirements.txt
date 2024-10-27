@@ -1,0 +1,9 @@
+streamlit
+torch
+transformers
+sentence-transformers
+elasticsearch
+scikit-learn
+psycopg2-binary
+requests
+openai
