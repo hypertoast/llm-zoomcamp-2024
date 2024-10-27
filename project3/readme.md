@@ -1,5 +1,5 @@
 # llm-zoomcamp-2024
-
+# Project 3
 # Mental Health Q&A System with RAG Flow Using Hugging Face and OpenAI
 
 This project is created by me for the [LLM Zoomcamp 2024](https://github.com/DataTalksClub/llm-zoomcamp).
@@ -47,6 +47,51 @@ The project is divided into two main parts:
   1. Streamlit UI: Users can select between Hugging Face (with vector-based or keyword-based retrieval) or OpenAI for querying.
   2. Querying: Users input a query, which is passed through the chosen retrieval method. If Hugging Face is selected, the system performs either BM25 or vector-based search to retrieve relevant responses. If OpenAI is selected, the query is sent to OpenAI's GPT model for a response.
   3. Feedback Collection: After receiving the response, users can rate the helpfulness of the response, which is logged for future evaluation.
+
+
+## Evaluations
+
+```
+Overall Results:
+
+                     Method       Hit Rate            MRR           NDCG             F1      Precision         Recall
+0  semantic_search_question  0.500 ± 0.500  0.500 ± 0.500  0.964 ± 0.048  0.167 ± 0.167  0.100 ± 0.100  0.500 ± 0.500
+1      semantic_search_text  0.500 ± 0.500  0.417 ± 0.449  0.870 ± 0.120  0.167 ± 0.167  0.100 ± 0.100  0.500 ± 0.500
+2  semantic_search_combined  0.500 ± 0.500  0.500 ± 0.500  0.934 ± 0.098  0.167 ± 0.167  0.100 ± 0.100  0.500 ± 0.500
+3               text_search  0.667 ± 0.471  0.667 ± 0.471  0.953 ± 0.093  0.222 ± 0.157  0.133 ± 0.094  0.667 ± 0.471
+4           combined_search  0.667 ± 0.471  0.667 ± 0.471  0.964 ± 0.059  0.222 ± 0.157  0.133 ± 0.094  0.667 ± 0.471
+
+```
+
+Looking at the metrics:
+
+1.  **Hit Rate** (percentage of queries where a relevant result was found):
+-   `text_search` and `combined_search` perform best (0.667 ± 0.471)
+-   Both methods find relevant results about 67% of the time
+-   The high standard deviation (±0.471) suggests some variability in performance
+2.  **MRR** (Mean Reciprocal Rank - how high the first relevant result appears):
+-   Again, `text_search` and `combined_search` lead (0.667 ± 0.471)
+-   This means when they find a relevant result, it tends to be ranked higher
+3.  **NDCG** (Normalized Discounted Cumulative Gain - overall ranking quality):
+-   All methods perform well (>0.87)
+-   `semantic_search_question` and `combined_search` slightly lead (0.964)
+-   Low standard deviations indicate consistent ranking quality
+4.  **F1 Score** (harmonic mean of precision and recall):
+-   `text_search` and `combined_search` perform best (0.222 ± 0.157)
+-   However, the overall F1 scores are relatively low, suggesting room for improvement
+5.  **Precision** (accuracy of relevant results):
+-   Generally low across all methods (0.1-0.133)
+-   `text_search` and `combined_search` slightly better
+6.  **Recall** (ability to find all relevant results):
+-   `text_search` and `combined_search` lead (0.667 ± 0.471)
+-   Matches the hit rate, suggesting good coverage
+
+**Recommendation:** Based on these results, I decided using the `combined_search` method for the RAG system because:
+1.  It achieves the highest scores across most metrics
+2.  It combines the benefits of both semantic and text-based search
+3.  It shows the most consistent NDCG (0.964 ± 0.059)
+4.  It ties for best hit rate and MRR
+
 
 
 ## How to replicate
@@ -100,6 +145,7 @@ docker run -it -p 8501:8501 mental-health-rag-app
 - Cloud Deployment: Deploy the app to cloud platforms such as Heroku or AWS for broader accessibility.
 - Enhanced Monitoring: Implement a more robust feedback monitoring dashboard using tools like Grafana.
 - Integrating Kaggle API to download the data-set. Currently, the raw source is embedded within this project (intents.json)
+
 
 ## Reviewing criteria
 
