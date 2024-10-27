@@ -93,6 +93,31 @@ Looking at the metrics:
 4.  It ties for best hit rate and MRR
 
 
+Let me break down what each method compared was actually doing:
+
+1.  `semantic_search_question`
+-   Uses the `question_vector_knn` field
+-   Optimized for question-type embeddings
+-   Pure vector similarity search using the question-focused embeddings
+2.  `semantic_search_text`
+-   Uses the `text_vector_knn` field
+-   Optimized for general text embeddings
+-   Pure vector similarity search using text-focused embeddings
+3.  `semantic_search_combined`
+-   Uses the `question_text_vector_knn` field
+-   Combines both question and text embeddings
+-   Pure vector search but with hybrid embeddings
+4.  `text_search`
+-   Traditional Elasticsearch text search
+-   Uses the text fields directly
+-   No vector/embedding involvement
+-   Uses text analysis, synonyms, and fuzzy matching
+5.  `combined_search`
+-   Hybrid approach
+-   Combines both vector search (`vector_combined_knn`) and text search
+-   Weights between vector similarity (0.7) and text matching (0.3)
+
+From our results, interestingly, the traditional `text_search` and the hybrid `combined_search` performed better than pure vector-based approaches. This suggests that for my specific use case, lexical matching (actual text matching) might be as important as semantic understanding.
 
 ## How to replicate
 
