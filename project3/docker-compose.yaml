@@ -1,0 +1,61 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms750m -Xmx750m
+      - xpack.security.enabled=false    
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  streamlit_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: streamlit_app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - elasticsearch
+      - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=feedback_db
+      - POSTGRES_USER=your_user
+      - POSTGRES_PASSWORD=your_password
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: feedback_db
+      POSTGRES_USER: your_user
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mount the SQL script to auto-run
+
+  jupyter:
+    image: jupyter/scipy-notebook:latest
+    container_name: jupyter
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./app:/home/jovyan/app
+      - ./data:/home/jovyan/data
+      - ./evaluation:/home/jovyan/evaluation
+    ports:
+      - "8888:8888"
+
+volumes:
+  elasticsearch_data:
+  pgdata:
+
+networks:
+ host:
+   external: false
