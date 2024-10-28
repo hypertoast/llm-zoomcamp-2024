@@ -1,4 +1,4 @@
 ## Here, all evaluation notebooks are available
 
-- Evaluating differnt methods for RAG system
-- RAG Evaluation
+- Evaluating retrievals --> retrieval_evaluation.ipynb
+- Evaluating RAG --> RAG_evaluation.ipynb
