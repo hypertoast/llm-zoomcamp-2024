@@ -131,22 +131,6 @@ Feel free to create an issue if it is not accessible during your evaluation and 
   - Information preservation
   - Response quality
 
-### 4. Application Features
-
-#### Core Functionality:
-- Model selection (GPT-3.5/GPT-4)
-- Real-time query processing
-- Context-aware responses
-- Feedback collection
-
-#### Analytics Dashboard:
-- Usage statistics
-- Response quality metrics
-- Model performance comparison
-- Cost analysis
-- Exportable analytics data
-
-
 ## Evaluations
 
 ### Retrieval
@@ -249,6 +233,21 @@ Key Insights:
     -   Both models show similar context\_relevance
     -   The difference is in how they use the retrieved information
 
+
+### 4. Application Features
+
+#### Core Functionality:
+- Model selection (GPT-3.5/GPT-4)
+- Real-time query processing
+- Context-aware responses
+- Feedback collection
+
+#### Analytics Dashboard:
+- Usage statistics
+- Response quality metrics
+- Model performance comparison
+- Cost analysis
+- Exportable analytics data
 
 ## How to Replicate
 
