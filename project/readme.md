@@ -277,6 +277,9 @@ docker run -it -p 8501:8501 \
 docker compose up -d --build
 ```
 
+PS: Current docker compose setup also installs Jupyter environment to play with notebooks and interact with the whole system.
+My experience with Docker has been a little flaky where in a couple systems, inter container communication was sporadic. But, rest asasured, it works (already up on my demo)
+
 ## Scope for Improvement
 
 1. **Technical Enhancements**:
