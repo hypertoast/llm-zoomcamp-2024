@@ -7,3 +7,7 @@ scikit-learn
 psycopg2-binary
 requests
 openai
+psycopg2-binary
+plotly
+pandas
+python-dotenv
