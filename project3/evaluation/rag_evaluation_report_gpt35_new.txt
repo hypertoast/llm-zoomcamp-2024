@@ -1,0 +1,73 @@
+# RAG System Comprehensive Evaluation Report
+Generated on: 2024-10-28 01:12
+
+## Traditional Metrics Summary
+
+Average Scores:
+rouge1_f1              0.241927
+rouge2_f1              0.067717
+rougeL_f1              0.171489
+bleu                   0.013797
+semantic_similarity    0.571268
+context_relevance      0.554409
+
+## LLM Judge Evaluation Summary
+
+Average Overall Score: 0.66
+
+Sample Feedback:
+- The response effectively differentiates between sadness and depression, but could be improved by including more detail on the symptoms and impact of depression as shown in the reference answer.
+- The response provides a satisfactory explanation of the differences between sadness and depression, but could be improved by incorporating more details and examples provided in the reference answer.
+- Overall, the response provides a relevant and accurate explanation of depression, but could be improved by including more details to enhance completeness.
+
+## A→Q→A' Evaluation Summary
+
+Average Scores:
+semantic_similarity     0.450000
+factual_consistency     0.607143
+information_coverage    0.578571
+
+## Detailed Query Analysis
+
+### Query 1
+Query: What's the difference between sadness and depression?
+Generated Response: Sadness and depression are often used interchangeably, but there are some key differences between the two. 
+
+Sadness is a normal human emotion that everyone experiences at some point in their lives. It is usually triggered by a specific event, such as a loss or disappointment, and tends to be temporary. Sadness is a natural response to a challenging situation and typically improves with time as the individual processes their feelings.
+
+On the other hand, depression is a clinical mental health condition that goes beyond feeling sad. Depression is characterized by persistent feelings of sadness, hopelessness, and worthlessness that can significantly impact a person's daily life and functioning. Unlike sadness, depression is not necessarily tied to a specific event and may persist for weeks, months, or even years without improvement.
+
+It's important to seek professional help if you suspect that you or someone you know may be experiencing depression, as it is a serious condition that often requires treatment.
+Ground Truth: Sadness is a normal reaction to a loss, disappointment, problems, or other difficult situations. Feeling sad from time to time is just another part of being human. In these cases, feelings of sadness go away quickly and you can go about your daily life. Other ways to talk about sadness might be feeling low, feeling down, or feeling blue.A person may say they are feeling depressed, but if it goes away on its own and doesn't impact life in a big way, it probably isn't the illness of depression. Depression is a mental illness that affects your mood, the way you understand yourself, and the way you understand and relate to things around you. It can also go by different names, such as clinical depression, major depressive disorder, or major depression. Depression can come up for no reason, and it lasts for a long time. It's much more than sadness or low mood. People who experience depression may feel worthless or hopeless. They may feel unreasonable guilty. Some people may experience depression as anger or irritability. It may be hard to concentrate or make decisions. Most people lose interest in things that they used to enjoy and may isolate themselves from others. There are also physical signs of depression, such as problems with sleep, appetite and energy and unexplainable aches or pains. Some may experience difficult thoughts about death or ending their life (suicide). Depression lasts longer than two weeks, doesn't usually go away on its own, and impacts your life. It's a real illness, and it is very treatable. It's important to seek help if you're concerned about depression.
+
+### Query 2
+Query: difference between sadness and depression
+Generated Response: Sadness is a normal human emotion that everyone experiences at times, usually in response to a specific event or situation. Depression, on the other hand, is a mental health disorder characterized by persistent feelings of sadness, hopelessness, and loss of interest in activities once found enjoyable. It is typically more severe and long-lasting than feelings of sadness.
+
+If you have any more questions or need further clarification, feel free to ask!
+Ground Truth: Sadness is a normal reaction to a loss, disappointment, problems, or other difficult situations. Feeling sad from time to time is just another part of being human. In these cases, feelings of sadness go away quickly and you can go about your daily life. Other ways to talk about sadness might be feeling low, feeling down, or feeling blue.A person may say they are feeling depressed, but if it goes away on its own and doesn't impact life in a big way, it probably isn't the illness of depression. Depression is a mental illness that affects your mood, the way you understand yourself, and the way you understand and relate to things around you. It can also go by different names, such as clinical depression, major depressive disorder, or major depression. Depression can come up for no reason, and it lasts for a long time. It's much more than sadness or low mood. People who experience depression may feel worthless or hopeless. They may feel unreasonable guilty. Some people may experience depression as anger or irritability. It may be hard to concentrate or make decisions. Most people lose interest in things that they used to enjoy and may isolate themselves from others. There are also physical signs of depression, such as problems with sleep, appetite and energy and unexplainable aches or pains. Some may experience difficult thoughts about death or ending their life (suicide). Depression lasts longer than two weeks, doesn't usually go away on its own, and impacts your life. It's a real illness, and it is very treatable. It's important to seek help if you're concerned about depression.
+
+### Query 3
+Query: What is Depression?
+Generated Response: Depression is a mental health disorder characterized by persistent feelings of sadness, hopelessness, and a lack of interest in activities that were once enjoyable. It can significantly impact a person's thoughts, emotions, and daily functioning. While feeling sad is a normal human emotion that usually resolves on its own, depression is a more serious and long-lasting condition that may require professional treatment. If you are experiencing symptoms of depression, it is important to seek help from a mental health professional.
+Ground Truth: A mental health disorder characterised by persistently depressed mood or loss of interest in activities, causing significant impairment in daily life.
+
+### Query 4
+Query: Define Depression
+Generated Response: Depression is a common mental health disorder characterized by persistent feelings of sadness, hopelessness, and a lack of interest in activities. It can impact how a person thinks, feels, and behaves, and can have a significant impact on daily life. Symptoms of depression can vary from person to person and may include changes in appetite, sleep disturbances, fatigue, and difficulty concentrating. It is important to seek support and treatment if you believe you may be experiencing depression.
+Ground Truth: A mental health disorder characterised by persistently depressed mood or loss of interest in activities, causing significant impairment in daily life.
+
+### Query 5
+Query: I want some advice.
+Generated Response: It is important to acknowledge that seeking advice is the first step to addressing concerns. Warning signs of mental illness can include changes in behavior, mood swings, social withdrawal, difficulties in concentration, changes in sleep patterns, and increased substance use. It is crucial to speak to a mental health professional for a proper assessment and guidance tailored to your specific needs. Remember that seeking help is a sign of strength, and you deserve support and understanding.
+Ground Truth: Sure. What can I do to help?
+
+### Query 6
+Query: I need some advice.
+Generated Response: It's important to understand that seeking advice on mental health concerns is a positive step. When becoming involved in treatment, it is crucial to communicate openly and honestly with your mental health provider. This includes discussing your symptoms, concerns, and treatment preferences. It's also important to establish a treatment plan that is tailored to your individual needs and goals. Additionally, it's recommended to educate yourself about mental illness, treatment options, and potential warning signs of a worsening condition. Some common warning signs of mental illness include changes in mood, behavior, sleep patterns, appetite, and social interactions. If you notice these warning signs in yourself or someone else, it's important to seek professional help promptly.
+Ground Truth: Okay what do you need advice on?
+
+### Query 7
+Query: I need advice on something
+Generated Response: Of course! Please go ahead and ask your question, I'll do my best to provide you with helpful advice.
+Ground Truth: Sure. What can I do to help?
