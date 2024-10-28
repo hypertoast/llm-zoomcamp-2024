@@ -6,7 +6,7 @@ This project is created for the [LLM Zoomcamp 2024](https://github.com/DataTalks
 - [Problem Statement and Project Description](#problem-statement-and-project-description)
 - [Technologies and Tools](#technologies-and-tools)
 - [Deep-dive Technical Implementation](#deep-dive)
-- [Evaluation Results](#evaluation-results)
+- [Evaluation Framework](#3-evaluation-framework)
 - [How to Replicate](#how-to-replicate)
 - [Scope for Improvement](#scope-for-improvement)
 
