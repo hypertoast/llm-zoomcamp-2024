@@ -11,3 +11,9 @@ psycopg2-binary
 plotly
 pandas
 python-dotenv
+nltk
+tqdm
+rouge-score
+bert_score
+evaluate
+accelerate
