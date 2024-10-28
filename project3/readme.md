@@ -243,21 +243,13 @@ docker build -t mental-health-rag-app .
 docker run -it -p 8501:8501 mental-health-rag-app
 ```
 
-## Application demo and features
-### Features of the app:
-1. Querying the Knowledge Base: Users can input mental health-related queries and choose the retrieval method:
-  - BM25 Keyword-based retrieval
-  - Vector-based search using Hugging Face embeddings
-  - OpenAI GPT-4-based generation
-2. Interactive UI: The application is built using Streamlit and allows users to interactively select the LLM, retrieval method, and provide feedback on the quality of responses.
-3. Feedback System: Users can submit feedback for each query, which is logged for future evaluation and monitoring.
-
 ## Scope for improvement
-- Advanced Search: Implement hybrid search combining BM25 and vector-based retrieval for better performance.
-- Data Persistence: Switch feedback logging from CSV to a database like SQLite or PostgreSQL.
-- Cloud Deployment: Deploy the app to cloud platforms such as Heroku or AWS for broader accessibility.
-- Enhanced Monitoring: Implement a more robust feedback monitoring dashboard using tools like Grafana.
 - Integrating Kaggle API to download the data-set. Currently, the raw source is embedded within this project (intents.json)
+- Integrate Offline LLM to save costs
+- Modularize code for reusability
+- Data Ingestion Pipeline to continuously update indexes in Elastic Search
+- Slightly better polished UI with user management
+- 
 
 
 ## Reviewing criteria
