@@ -23,6 +23,9 @@ The system combines:
 The goal is to demonstrate how LLMs and retrieval-based techniques can create a reliable Q&A system for mental health-related questions while maintaining transparency and measurable quality.
 
 [App Screenshots are available here](https://github.com/hypertoast/llm-zoomcamp-2024/blob/main/project3/assets/readme.md)
+[App has also been hosted on my personal VPS](https://stream.hypertoast.com)
+--> PS: This link may not be accessible in a few days (to prevent abuse). I may take it down or bring it up with some additional checks for OpenAI key integration
+Feel free to create an issue if it is not accessible during your evaluation and I will ensure its up
 
 ## Technologies and Tools
 
@@ -267,6 +270,11 @@ docker build -t mental-health-rag-app .
 docker run -it -p 8501:8501 \
   -e OPENAI_API_KEY='your-key-here' \
   mental-health-rag-app
+```
+
+### Docker Compose
+```
+docker compose up -d --build
 ```
 
 ## Scope for Improvement
