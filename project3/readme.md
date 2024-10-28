@@ -22,6 +22,8 @@ The system combines:
 
 The goal is to demonstrate how LLMs and retrieval-based techniques can create a reliable Q&A system for mental health-related questions while maintaining transparency and measurable quality.
 
+[App Screenshots are available here](https://github.com/hypertoast/llm-zoomcamp-2024/blob/main/project3/assets/readme.md)
+
 ## Technologies and Tools
 
 - **Data Source**: [Mental Health Conversational Data](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/) from Kaggle
