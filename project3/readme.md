@@ -51,6 +51,7 @@ The project is divided into two main parts:
 
 ## Evaluations
 
+### Methods
 ```
 Overall Results:
 
@@ -118,6 +119,38 @@ Let me break down what each method compared was actually doing:
 -   Weights between vector similarity (0.7) and text matching (0.3)
 
 From our results, interestingly, the traditional `text_search` and the hybrid `combined_search` performed better than pure vector-based approaches. This suggests that for my specific use case, lexical matching (actual text matching) might be as important as semantic understanding.
+
+
+### RAG Evaluation
+
+1.  **Traditional Metrics**
+-   Very similar performance in basic metrics (ROUGE, BLEU)
+-   Both models show comparable semantic\_similarity (0.589 vs 0.571)
+-   Identical context\_relevance (0.554), suggesting similar retrieval performance
+2.  **LLM Judge Evaluation**
+-   GPT-4 scored significantly higher (4.07 vs 0.66)
+-   Qualitative feedback shows key differences:
+    -   GPT-4's responses are more comprehensive and detailed
+    -   GPT-3.5's feedback consistently mentions "could be improved"
+    -   GPT-4's feedback is more positive and indicates completeness
+3.  **A→Q→A' Evaluation**
+-   GPT-4 shows better performance across all metrics:
+    -   Higher factual\_consistency (0.87 vs 0.61)
+    -   Better information\_coverage (0.81 vs 0.58)
+    -   Slightly lower semantic\_similarity (0.36 vs 0.45)
+
+Key Insights:
+
+1.  **Consistency vs Variation**
+    -   GPT-4 shows higher consistency in maintaining factual accuracy
+    -   GPT-3.5 might be more literal in semantic similarity but less comprehensive
+2.  **Quality of Responses**
+    -   GPT-4 provides more complete and detailed responses
+    -   GPT-3.5 gives adequate but less detailed answers
+3.  **Retrieval Effectiveness**
+    -   Both models show similar context\_relevance
+    -   The difference is in how they use the retrieved information
+
 
 ## How to replicate
 
