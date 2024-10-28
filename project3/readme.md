@@ -1,6 +1,6 @@
 # llm-zoomcamp-2024
 # Project 3
-# Mental Health Q&A System with RAG Flow Using Hugging Face and OpenAI
+# Mental Health Q&A System with RAG Flow Using OpenAI
 
 This project is created by me for the [LLM Zoomcamp 2024](https://github.com/DataTalksClub/llm-zoomcamp).
 
@@ -18,7 +18,7 @@ This project is created by me for the [LLM Zoomcamp 2024](https://github.com/Dat
 
 Mental health is an important topic in today’s world, and there are numerous queries that individuals may have regarding their mental well-being. However, having access to the right knowledge base and tools to answer these questions is often difficult. This project builds a Retrieval-Augmented Generation (RAG) system to provide mental health-related answers based on a conversational dataset from Kaggle.
 
-Using both pre-trained and OpenAI's GPT models, this project allows users to ask mental health-related questions and receive responses.
+Using OpenAI's GPT models, this project allows users to ask mental health-related questions and receive responses.
 
 The goal of the project is to demonstrate the application of LLMs and retrieval-based techniques to create a reliable Q&A system for mental health-related questions using a blend of knowledge base retrieval and language model generation.
 
@@ -27,7 +27,9 @@ The goal of the project is to demonstrate the application of LLMs and retrieval-
 - Kaggle Dataset: [Mental Health Conversational Data](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/) for knowledge base creation.
 - Python: Used for building the application pipeline.
 - Streamlit: For creating the UI to interact with the system.
-- Transformers: For creating vector embeddings using the sentence-transformers/all-MiniLM-L6-v2 model.
+- Transformers: For creating vector embeddings using the sentence-transformers/all-mpnet-base-v2 model.
+- Elastic Search: Used as a vector data store to save embeddings from the dataset.
+- Postgres: To perform RAG Monitoring, Feedback and Analytics.
 - OpenAI API: For generating responses using the gpt-4 model.
 - Docker: For containerization of the pipeline and the application.
 
@@ -39,19 +41,72 @@ The goal of the project is to demonstrate the application of LLMs and retrieval-
 
 The project is divided into two main parts:
 
-- Part 1: Data Preparation: Prepare the conversational dataset for retrieval and question-answering. This involves embedding the patterns using Hugging Face models and setting up the BM25 keyword-based search.
+- Part 1: Data Ingestion, Cleansing, Mapping, vector Indexing:
   1. Kaggle Dataset: Load the conversational dataset (intents.json) from Kaggle, which includes user input patterns and associated responses.
-  2. BM25 Setup: Tokenize the patterns and set up BM25 for keyword-based retrieval.
-  3. Hugging Face Embeddings: Generate vector embeddings for each pattern using the Hugging Face sentence-transformers/all-MiniLM-L6-v2 model for vector-based search.
-- Part 2: Application Implementation: Build the Streamlit application to allow users to query the knowledge base and generate responses using either BM25 keyword search, vector-based search, or OpenAI's GPT model.
-  1. Streamlit UI: Users can select between Hugging Face (with vector-based or keyword-based retrieval) or OpenAI for querying.
-  2. Querying: Users input a query, which is passed through the chosen retrieval method. If Hugging Face is selected, the system performs either BM25 or vector-based search to retrieve relevant responses. If OpenAI is selected, the query is sent to OpenAI's GPT model for a response.
-  3. Feedback Collection: After receiving the response, users can rate the helpfulness of the response, which is logged for future evaluation.
-
+  2. Cleaning: Clean the dataset for extra whitespaces, special characters, new lines, URLs etc.
+  3. Create Index:  Create an enhanced index with improved settings, custom analyzers, and dense_vector mappings.
+  4. Create Mappings
+     - Analyzers: rag_analyzer & ngram_analyzer
+     - Synonym filters
+     - Mappings: 
+        - question_vector_knn
+        - text_vector_knn
+        - question_text_vector_knn
+        - vector_combined_knn
+  5. Patterns:
+      - variations: 
+        pattern,
+        Q: {pattern}
+        Question: {pattern}
+        pattern.lower()
+        Can you tell me {pattern.lower()}?
+        I want to know {pattern.lower()}
+        Please explain {pattern.lower()}
+      - Promot Engineering:
+        - Question context: {text}
+        - Background information: {text}
+        - Complete context: {text}
+        - {text}
+  7. Evaluate Retrievals
+     - Methods
+       - semantic_search_question
+       - semantic_search_text
+       - semantic_search_combined
+       - text_search
+       - combined_search
+    - Metrics used
+      - Hit Rate
+      - MRR
+      - NDCG
+      - F1
+      - Precision
+      - Recall   
+  9. Evaluate RAG
+      - Methods:
+        - Traditional Metrics
+          - ROUGE
+          - BLEU
+        - LLM As a Judge
+          - GPT 3.5
+          - GPT 4o
+        - A→Q→A' Evaluation
+  10. Streamlit UI:
+    - Core
+      - Users can select between OpenAI (GPT 3x/ GPT 4x) for querying.
+      - Querying: Users input a query, which is passed through the chosen retrieval method.
+      - Feedback Collection: After receiving the response, users can rate the helpfulness of the response, which is logged for future analytics.
+    - Analytics
+      - Basic Usage Statistics
+      - Query vs Response Length
+      - Feedback Analysis by Model GPT3.5
+      - Feedback Analysis by Model GPT4o
+      - Cost Analysis
+      - Total Estimated Cost
+      - Download Analytics Data
 
 ## Evaluations
 
-### Methods
+### Retrieval
 ```
 Overall Results:
 
@@ -121,7 +176,7 @@ Let me break down what each method compared was actually doing:
 From our results, interestingly, the traditional `text_search` and the hybrid `combined_search` performed better than pure vector-based approaches. This suggests that for my specific use case, lexical matching (actual text matching) might be as important as semantic understanding.
 
 
-### RAG Evaluation
+### RAG
 
 1.  **Traditional Metrics**
 -   Very similar performance in basic metrics (ROUGE, BLEU)
