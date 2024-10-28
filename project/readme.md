@@ -26,8 +26,9 @@ The goal is to demonstrate how LLMs and retrieval-based techniques can create a 
 
 [App Screenshots are available here](https://github.com/hypertoast/llm-zoomcamp-2024/blob/main/project3/assets/readme.md)
 
-[App has also been hosted on my personal VPS](https://stream.hypertoast.com)
+[App has also been hosted on my personal cloud](https://stream.hypertoast.com)
 --> PS: This link may not be accessible in a few days (to prevent abuse). I may take it down or bring it up with some additional checks for OpenAI key integration
+
 Feel free to create an issue if it is not accessible during your evaluation and I will ensure its up
 
 ## Technologies and Tools
