@@ -5,6 +5,8 @@ This project is created for the [LLM Zoomcamp 2024](https://github.com/DataTalks
 ## Contents
 - [Problem Statement and Project Description](#problem-statement-and-project-description)
 - [Technologies and Tools](#technologies-and-tools)
+- [System Architecture](#system-architecture)
+- [RAG System Sequence Flow](#rag-system-sequence-flow)
 - [Deep-dive Technical Implementation](#deep-dive)
 - [Evaluation Framework](#3-evaluation-framework)
 - [How to Replicate](#how-to-replicate)
@@ -42,6 +44,14 @@ Feel free to create an issue if it is not accessible during your evaluation and 
   - psycopg2
   - pandas & numpy
 - **Infrastructure**: Docker for containerization
+
+## System Architecture
+
+![](assets/Mental-Health-RAG-System-Architecture.png)
+
+## RAG System Sequence Flow 
+![](assets/RAG-System-Sequence-Flow.png)
+
 
 ## Deep-dive
 
