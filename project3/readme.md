@@ -33,15 +33,8 @@ The goal of the project is to demonstrate the application of LLMs and retrieval-
 - OpenAI API: For generating responses using the gpt-4 model.
 - Docker: For containerization of the pipeline and the application.
 
-## Project flow diagram
+## Deep-dive
 
-[A live Mermaid based Flow Diagram - Click Here](https://mermaid.ink/img/pako:eNqNkk1vwjAMhv-KlTNcJu3SwySgtFQD7QPYpeUQEtNWtEmVJkOI9r8v_Rh0EwdysJL4eW3HzoUwyZE45JDJE0uo0rBxIwF2TcJtiQo-DKozBKIwegfj8QtML2vMkGlYLld1h3Z22rirhYnjVMTgUYYVzH7hT9QqxW-awQp1Ink91LwVKCZBBW7oo0BFNVq-LKQoEU6pTqADwH_f7IYZZ636y8aXarynJXJYI1UsqWAe9hkRtmVTzx1qN4wyXT09wyueT1Ldonj_o9yh_lQ0b1vkNzKjxO0VWkLTzZ71HqLch6jO-i27CGcya9vdjs5D5HvKjj25aJkgXMr46gIqeAcHQtvOM51KYXkyIjmqnKbc_o1Lo4-ITjDHiDh2y6k6RiQSteWo0XJ9Fow4WhkcESVNnBDnQLPSnkzB7TjdlMaK5v1t_QMmXMwU?type=png)
-
-## Project flow explanation
-
-The project is divided into two main parts:
-
-- Part 1: Data Ingestion, Cleansing, Mapping, vector Indexing:
   1. Kaggle Dataset: Load the conversational dataset (intents.json) from Kaggle, which includes user input patterns and associated responses.
   2. Cleaning: Clean the dataset for extra whitespaces, special characters, new lines, URLs etc.
   3. Create Index:  Create an enhanced index with improved settings, custom analyzers, and dense_vector mappings.
