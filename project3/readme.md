@@ -1,101 +1,134 @@
-# llm-zoomcamp-2024
-# Project 3
 # Mental Health Q&A System with RAG Flow Using OpenAI
 
-This project is created by me for the [LLM Zoomcamp 2024](https://github.com/DataTalksClub/llm-zoomcamp).
+This project is created for the [LLM Zoomcamp 2024](https://github.com/DataTalksClub/llm-zoomcamp).
 
 ## Contents
-- [Problem statement and project description](#problem-statement-and-project-description)
-- [Technologies, tools and data sources used](#technologies-tools-and-data-sources-used)
-- [Project flow diagram](#project-flow-diagram)
-- [Project flow explanation](#project-flow-explanation)
-- [How to replicate](#how-to-replicate)
-- [Application demo and features](#application-demo-and-features)
-- [Scope for improvement](#scope-for-improvement)
-- [Reviewing criteria](#reviewing-criteria)
+- [Problem Statement and Project Description](#problem-statement-and-project-description)
+- [Technologies and Tools](#technologies-and-tools)
+- [Deep-dive Technical Implementation](#deep-dive)
+- [Evaluation Results](#evaluation-results)
+- [How to Replicate](#how-to-replicate)
+- [Scope for Improvement](#scope-for-improvement)
 
-## Problem statement and project description
+## Problem Statement and Project Description
 
-Mental health is an important topic in today’s world, and there are numerous queries that individuals may have regarding their mental well-being. However, having access to the right knowledge base and tools to answer these questions is often difficult. This project builds a Retrieval-Augmented Generation (RAG) system to provide mental health-related answers based on a conversational dataset from Kaggle.
+Mental health is an increasingly important topic in today's world, with many individuals seeking answers to their mental health-related queries. However, accessing reliable information and immediate support can be challenging. This project addresses this need by building a Retrieval-Augmented Generation (RAG) system that provides mental health-related answers based on a curated conversational dataset.
 
-Using OpenAI's GPT models, this project allows users to ask mental health-related questions and receive responses.
+The system combines:
+- Knowledge base retrieval from a verified dataset
+- Advanced language model capabilities (OpenAI's GPT models)
+- Real-time feedback collection and analytics
+- Comprehensive evaluation metrics
 
-The goal of the project is to demonstrate the application of LLMs and retrieval-based techniques to create a reliable Q&A system for mental health-related questions using a blend of knowledge base retrieval and language model generation.
+The goal is to demonstrate how LLMs and retrieval-based techniques can create a reliable Q&A system for mental health-related questions while maintaining transparency and measurable quality.
 
-## Technologies, tools and data sources used
+## Technologies and Tools
 
-- Kaggle Dataset: [Mental Health Conversational Data](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/) for knowledge base creation.
-- Python: Used for building the application pipeline.
-- Streamlit: For creating the UI to interact with the system.
-- Transformers: For creating vector embeddings using the sentence-transformers/all-mpnet-base-v2 model.
-- Elastic Search: Used as a vector data store to save embeddings from the dataset.
-- Postgres: To perform RAG Monitoring, Feedback and Analytics.
-- OpenAI API: For generating responses using the gpt-4 model.
-- Docker: For containerization of the pipeline and the application.
+- **Data Source**: [Mental Health Conversational Data](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/) from Kaggle
+- **Core Technologies**:
+  - Python 3.11
+  - OpenAI API (GPT-3.5-turbo and GPT-4)
+  - Elasticsearch for vector storage
+  - PostgreSQL for analytics and feedback
+  - Streamlit for UI
+- **Key Libraries**:
+  - sentence-transformers (all-mpnet-base-v2 model)
+  - elasticsearch-py
+  - psycopg2
+  - pandas & numpy
+- **Infrastructure**: Docker for containerization
 
 ## Deep-dive
 
-  1. Kaggle Dataset: Load the conversational dataset (intents.json) from Kaggle, which includes user input patterns and associated responses.
-  2. Cleaning: Clean the dataset for extra whitespaces, special characters, new lines, URLs etc.
-  3. Create Index:  Create an enhanced index with improved settings, custom analyzers, and dense_vector mappings.
-  4. Create Mappings
-     - Analyzers: rag_analyzer & ngram_analyzer
-     - Synonym filters
-     - Mappings: 
-        - question_vector_knn
-        - text_vector_knn
-        - question_text_vector_knn
-        - vector_combined_knn
-  5. Patterns:
-      - variations: 
-        pattern,
-        Q: {pattern}
-        Question: {pattern}
-        pattern.lower()
-        Can you tell me {pattern.lower()}?
-        I want to know {pattern.lower()}
-        Please explain {pattern.lower()}
-      - Promot Engineering:
-        - Question context: {text}
-        - Background information: {text}
-        - Complete context: {text}
-        - {text}
-  7. Evaluate Retrievals
-     - Methods
-       - semantic_search_question
-       - semantic_search_text
-       - semantic_search_combined
-       - text_search
-       - combined_search
-    - Metrics used
-      - Hit Rate
-      - MRR
-      - NDCG
-      - F1
-      - Precision
-      - Recall   
-  9. Evaluate RAG
-      - Methods:
-        - Traditional Metrics
-          - ROUGE
-          - BLEU
-        - LLM As a Judge
-          - GPT 3.5
-          - GPT 4o
-        - A→Q→A' Evaluation
-  10. Streamlit UI:
-    - Core
-      - Users can select between OpenAI (GPT 3x/ GPT 4x) for querying.
-      - Querying: Users input a query, which is passed through the chosen retrieval method.
-      - Feedback Collection: After receiving the response, users can rate the helpfulness of the response, which is logged for future analytics.
-    - Analytics
-      - Basic Usage Statistics
-      - Query vs Response Length
-      - Feedback Analysis by Model GPT3.5
-      - Feedback Analysis by Model GPT4o
-      - Cost Analysis
-      - Total Estimated Cost
-      - Download Analytics Data
+### 1. Data Pipeline
+- **Data Loading & Cleaning**:
+  - Load conversational dataset (intents.json)
+  - Clean text: remove whitespace, special characters, URLs
+  - Normalize format for consistent processing
+
+- **Index Creation**:
+  - Custom analyzers: rag_analyzer & ngram_analyzer
+  - Synonym filters for mental health terminology
+  - Dense vector mappings for embeddings
+
+- **Vector Generation**:
+  - Multiple embedding types:
+    - question_vector_knn
+    - text_vector_knn
+    - question_text_vector_knn
+    - vector_combined_knn
+
+### 2. Query Processing
+- **Pattern Variations**:
+  ```python
+  variations = [
+      pattern,
+      f"Q: {pattern}",
+      f"Question: {pattern}",
+      pattern.lower(),
+      f"Can you tell me {pattern.lower()}?",
+      f"I want to know {pattern.lower()}"
+  ]
+  ```
+
+- **Context Enhancement**:
+  ```python
+  contexts = [
+      f"Question context: {text}",
+      f"Background information: {text}",
+      f"Complete context: {text}"
+  ]
+  ```
+
+### 3. Evaluation Framework
+
+#### Retrieval Evaluation
+- Methods compared:
+  - semantic_search_question
+  - semantic_search_text
+  - semantic_search_combined
+  - text_search
+  - combined_search
+
+- Metrics:
+  - Hit Rate
+  - MRR (Mean Reciprocal Rank)
+  - NDCG (Normalized Discounted Cumulative Gain)
+  - F1 Score
+  - Precision & Recall
+
+#### RAG Evaluation
+- Traditional Metrics:
+  - ROUGE (1, 2, L)
+  - BLEU Score
+  - Semantic Similarity
+
+- LLM as Judge:
+  - GPT-3.5 vs GPT-4 comparison
+  - Response completeness
+  - Factual accuracy
+  - Clarity and coherence
+
+- A→Q→A' Evaluation:
+  - Semantic consistency
+  - Information preservation
+  - Response quality
+
+### 4. Application Features
+
+#### Core Functionality:
+- Model selection (GPT-3.5/GPT-4)
+- Real-time query processing
+- Context-aware responses
+- Feedback collection
+
+#### Analytics Dashboard:
+- Usage statistics
+- Response quality metrics
+- Model performance comparison
+- Cost analysis
+- Exportable analytics data
+
 
 ## Evaluations
 
@@ -200,51 +233,61 @@ Key Insights:
     -   The difference is in how they use the retrieved information
 
 
-## How to replicate
+## How to Replicate
 
-### Step 0 - Prerequisites
-- Create an OpenAI API key from here.
-- Install Python and Docker.
+### Prerequisites
+1. OpenAI API key
+2. Docker and Python 3.11 installed
+3. At least 8GB RAM recommended
 
-### Step 1 - Clone the Repo
-- [Clone Repo](https://github.com/hypertoast/llm-zoomcamp-2024/)
+### Quick Start
 ```bash
+# Clone repository
 git clone https://github.com/hypertoast/llm-zoomcamp-2024/
 cd llm-zoomcamp-2024/project
-```
 
-### Step 2 - Set up Python environment
-- Install the required Python libraries:
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
-### Step 3 - Add OpenAI key
-- Edit app.py and update your OpenAI API Key
 
-### Step 4 - Run the application
-```python
+# Set up environment
+export OPENAI_API_KEY='your-key-here'
+
+# Run application
 streamlit run app.py
 ```
 
-### Step 5 - Containerization with Docker
-- Build the Docker image:
+### Docker Deployment
 ```bash
+# Build image
 docker build -t mental-health-rag-app .
+
+# Run container
+docker run -it -p 8501:8501 \
+  -e OPENAI_API_KEY='your-key-here' \
+  mental-health-rag-app
 ```
-- Run the Docker container:
-```bash
-docker run -it -p 8501:8501 mental-health-rag-app
-```
 
-## Scope for improvement
-- Integrating Kaggle API to download the data-set. Currently, the raw source is embedded within this project (intents.json)
-- Integrate Offline LLM to save costs
-- Modularize code for reusability
-- Data Ingestion Pipeline to continuously update indexes in Elastic Search
-- Slightly better polished UI with user management
-- 
+## Scope for Improvement
 
+1. **Technical Enhancements**:
+   - Integrate Kaggle API for automated dataset updates
+   - Add offline LLM support for reduced costs
+   - Implement data ingestion pipeline for continuous index updates
 
-## Reviewing criteria
+2. **Feature Additions**:
+   - User authentication and session management
+   - Response caching for common queries
+   - Multi-language support
 
-[Click Here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria) for the reviewing criteria
+3. **Code Quality**:
+   - Enhanced modularity for better reusability
+   - Comprehensive test coverage
+   - CI/CD pipeline integration
+
+## License
+MIT License
+
+## Acknowledgments
+- LLM Zoomcamp 2024 team
+- Kaggle dataset contributors
+- OpenAI API team
