@@ -280,6 +280,10 @@ docker compose up -d --build
 PS: Current docker compose setup also installs Jupyter environment to play with notebooks and interact with the whole system.
 My experience with Docker has been a little flaky where in a couple systems, inter container communication was sporadic. But, rest asasured, it works (already up on my demo)
 
+
+Caution:
+- Just realized that you will need to run the evaluation/retrieval_evaluation.ipynb for cleaning the data set, create index and index the data into Elastic Search. So, just one step before you jump in.
+
 ## Scope for Improvement
 
 1. **Technical Enhancements**:
